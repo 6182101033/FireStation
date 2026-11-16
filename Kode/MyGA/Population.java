@@ -11,13 +11,23 @@ public class Population {
 
     // 1. Constructor untuk membuat Populasi Awal (Generasi 0)
     public Population(int maxPopulationSize, int panjangKromosom, int targetP, double elitismPct, EvaluatorPeta evaluator, Random MyRand) {
+        this(maxPopulationSize, panjangKromosom, targetP, elitismPct, evaluator, MyRand, FireStationGA.REPR_BIT); // default: bit-string
+    }
+
+    // 1b. Konstruktor Populasi Awal dengan pilihan representasi (REPR_BIT atau REPR_FS)
+    public Population(int maxPopulationSize, int panjangKromosom, int targetP, double elitismPct, EvaluatorPeta evaluator, Random MyRand, int representasi) {
         this.MyRand = MyRand;
         this.maxPopulationSize = maxPopulationSize;
         this.elitismPct = elitismPct;
         this.listOfIndividual = new ArrayList<>();
 
         for (int i = 0; i < maxPopulationSize; i++) {
-            Individual ind = new IndividualBit(panjangKromosom, targetP, this.MyRand);
+            Individual ind;                                           // individu yang akan dibuat
+            if (representasi == FireStationGA.REPR_FS) {              // representasi ke-2: array p nomor sel
+                ind = new IndividualFSOnly(panjangKromosom, targetP, this.MyRand);
+            } else {                                                  // representasi ke-1: bit-string
+                ind = new IndividualBit(panjangKromosom, targetP, this.MyRand);
+            }
             this.listOfIndividual.add(ind);
         }
         

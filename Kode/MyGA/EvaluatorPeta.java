@@ -23,6 +23,7 @@ public class EvaluatorPeta {
     public List<Titik> daftarKosong = new ArrayList<>();
     
     // Matriks Jarak: matrixJarak[id_rumah][id_sel_kosong]
+    public int[][] idSel;        // idSel[r][c] = id sel kosong di (r,c), atau -1 jika bukan sel kosong
     public int[][] matrixJarak;
     public int penaltyP; // Penalti P = m * n jika sel tidak tercapai
 
@@ -40,6 +41,8 @@ public class EvaluatorPeta {
             penaltyP = m * n; // Nilai penalti sesuai spesifikasi soal
 
             grid = new char[m][n];
+            idSel = new int[m][n];                           // peta (baris,kolom) -> id sel kosong
+            for (int[] baris : idSel) java.util.Arrays.fill(baris, -1); // awalnya -1 (bukan sel kosong)
 
             // Baca m baris berikutnya
             for (int r = 0; r < m; r++) {
@@ -51,6 +54,7 @@ public class EvaluatorPeta {
                     if (sel == 'H' || sel == 'h') {
                         daftarRumah.add(new Titik(r, c));
                     } else if (sel == '.') {
+                        idSel[r][c] = daftarKosong.size();           // catat id sel kosong ini
                         daftarKosong.add(new Titik(r, c));
                     }
                 }

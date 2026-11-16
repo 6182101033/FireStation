@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +21,7 @@ public class IndividualFSOnly implements Individual {
                 this.genes[terisi++] = id;                   // simpan sebagai gen berikutnya
             }
         }
+        Arrays.sort(this.genes);                             // urutkan gen (bentuk kanonik): {3,9} dan {9,3} dianggap sama
         this.fitness = 0;                                    // belum dihitung
         this.cost = Double.MAX_VALUE;                        // belum dihitung
     }
@@ -27,6 +29,7 @@ public class IndividualFSOnly implements Individual {
     // 2. Konstruktor untuk anak hasil crossover / kloning
     public IndividualFSOnly(int[] genesBaru) {
         this.genes = genesBaru.clone();                      // salin agar tidak berbagi array dengan induk
+        Arrays.sort(this.genes);                             // urutkan gen (bentuk kanonik)
         this.fitness = 0;                                    // belum dihitung
         this.cost = Double.MAX_VALUE;                        // belum dihitung
     }
@@ -55,6 +58,7 @@ public class IndividualFSOnly implements Individual {
             }
             dipakai[genes[k]] = true;                        // tandai gen ini sudah dipakai
         }
+        Arrays.sort(genes);                                  // urutkan lagi setelah perbaikan
     }
 
     // Cek apakah id dipakai oleh gen selain indeks k (supaya pengganti tidak menabrak gen di depan)
