@@ -38,7 +38,13 @@ public class EksperimenTahap1 {
         // "TestCases/n40_acak_01.txt", "TestCases/n40_acak_02.txt",
         // "TestCases/n40_klaster_01.txt", "TestCases/n40_labirin_01.txt",
         //"TestCases/n60_acak_01.txt", "TestCases/n60_acak_02.txt",
-        "TestCases/n60_klaster_01.txt", "TestCases/n60_labirin_01.txt"
+        //"TestCases/n60_klaster_01.txt", "TestCases/n60_labirin_01.txt"
+
+        //TODO
+        //"TestCases/n80_acak_01.txt" 
+        // "TestCases/n80_acak_02.txt"
+        //"TestCases/n80_klaster_01.txt"
+        // "TestCases/n80_labirin_01.txt"
     };
 
     // Satu pekerjaan = satu run (model, peta, seed ke-iterasi)
